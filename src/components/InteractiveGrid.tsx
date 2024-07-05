@@ -30,7 +30,6 @@ const InteractiveGrid: React.FC<InteractiveGridProps> = ({
   const [rewardInput, setRewardInput] = useState<string>("");
 
   const handleCellClick = (x: number, y: number) => {
-    console.log(`Clicked cell: (${x}, ${y})`);
     setSelectedCell([x, y]);
   };
 

@@ -38,14 +38,19 @@ const App: React.FC = () => {
   };
   const handleRunAgent = async () => {
     try {
-      // Alert to show the data being sent to the backend
-      console.log(JSON.stringify(gridConfig, null, 2));
-
       const output = await runAgent(agentType, gridConfig);
       setAgentOutput(output);
-      console.log("Agent Output:", output);
       setCurrentIteration(0);
       setCurrentSequence(0);
+      setTimeout(() => {
+        const resultsContainer = document.querySelector(".results-container");
+        if (resultsContainer) {
+          resultsContainer.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      }, 100);
     } catch (error) {
       console.error("Error running agent:", error);
     }

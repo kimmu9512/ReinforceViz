@@ -21,8 +21,6 @@ const IterationControls: React.FC<IterationControlsProps> = ({
   totalSequences,
 }) => {
   const handleSequenceChange = (newSequence: number) => {
-    console.log(`Changing to sequence ${newSequence + 1} of ${totalSequences}`);
-    console.log(`curr sequence is :  ${currentSequence}`);
     setCurrentSequence(newSequence);
   };
   return (

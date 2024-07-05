@@ -1,5 +1,7 @@
 # ReinforceViz
 
+Visit the live deployment: [https://kimmu9512.github.io/ReinforceViz/](https://kimmu9512.github.io/ReinforceViz/)
+
 ReinforceViz is an interactive web interface for visualizing Q-learning and Value Iteration AI agents in reinforcement learning. It features customizable grid environments, real-time updates, and step-by-step execution for educational purposes. This frontend application pairs with the ReinforceViz backend API, which holds the code for the Q-learning and Value Iteration agents.
 
 ## Features
