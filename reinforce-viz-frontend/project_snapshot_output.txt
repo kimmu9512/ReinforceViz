@@ -1,0 +1,489 @@
+Project Code Transcript
+
+Directory Structure:
+
+├── tsconfig.node.json
+├── index.html
+├── tsconfig.app.json
+├── .eslintrc.cjs
+├── README.md
+├── public
+│   └── vite.svg
+├── .gitignore
+├── tsconfig.json
+├── vite.config.ts
+└── src
+    ├── App.tsx
+    ├── main.tsx
+    ├── types
+    │   └── index.ts
+    ├── App.css
+    ├── utils
+    ├── index.css
+    ├── components
+    │   ├── IterationControls.tsx
+    │   ├── Grid.tsx
+    │   ├── api.ts
+    │   ├── ConfigurationPanel.tsx
+    │   ├── InteractiveGrid.tsx
+    │   ├── GridCell.tsx
+    │   └── SequenceControls.tsx
+    ├── vite-env.d.ts
+    ├── hooks
+    └── assets
+        └── react.svg
+
+File Contents:
+
+
+--- File: ./tsconfig.node.json ---
+
+{
+  "compilerOptions": {
+    "composite": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "noEmit": true
+  },
+  "include": ["vite.config.ts"]
+}
+
+
+--- File: ./index.html ---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
+
+--- File: ./tsconfig.app.json ---
+
+{
+  "compilerOptions": {
+    "composite": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"]
+}
+
+
+--- File: ./README.md ---
+
+# React + TypeScript + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+
+- Configure the top-level `parserOptions` property like this:
+
+```js
+export default {
+  // other rules...
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+  },
+}
+```
+
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+
+--- File: ./tsconfig.json ---
+
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}
+
+
+--- File: ./src/App.css ---
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  max-width: 1200px;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.interactive-grid-container {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.results-container {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.q-learning-inputs {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.run-agent-button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.q-learning-inputs .input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.agent-specific-inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.agent-specific-inputs .input-group {
+  margin-bottom: 10px;
+}
+
+.configuration-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+}
+
+.input-group label {
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+}
+
+.configuration-panel select,
+.configuration-panel input,
+.configuration-panel button {
+  padding: 8px;
+  font-size: 14px;
+}
+
+.grid-cell {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 60px;
+  min-height: 60px;
+}
+
+.grid-cell.empty {
+  background-color: #f0f0f0;
+}
+
+.grid-cell.robot {
+  background-color: #4caf50;
+  color: white;
+}
+
+.grid-cell.boulder {
+  background-color: #795548;
+  color: white;
+}
+
+.grid-cell.terminal {
+  background-color: #ffc107;
+  color: black;
+}
+
+.robot-icon,
+.boulder-icon,
+.terminal-reward {
+  font-weight: bold;
+}
+
+.cell-value,
+.best-action {
+  color: #333;
+}
+.cell-value {
+  font-weight: bold;
+}
+
+.best-action {
+  font-style: italic;
+}
+
+.iteration-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.iteration-controls button {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.iteration-controls button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.iteration-controls span {
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.interactive-grid {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.grid,
+.interactive-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-row {
+  display: flex;
+}
+
+.grid-cell {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+
+.grid-cell.selected {
+  background-color: #d0d0d0;
+}
+
+.cell-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.cell-options button {
+  padding: 8px 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.cell-options button:nth-child(2) {
+  background-color: #607d8b;
+}
+
+.cell-options button:nth-child(3) {
+  background-color: #f44336;
+}
+
+.cell-options div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cell-options input {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.cell-options div button {
+  background-color: #2196f3;
+}
+.terminal-icon {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.terminal-reward {
+  font-size: 12px;
+  margin-top: 2px;
+}
+.info-message {
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 0.9em;
+  line-height: 1.4;
+  text-align: center;
+}
+}
+
+
+--- File: ./src/index.css ---
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
