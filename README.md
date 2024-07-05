@@ -40,7 +40,7 @@ npm install
 
 ```
 
-    or if you're using yarn:
+or if you're using yarn:
 
 ```bash
 yarn install
