@@ -33,7 +33,7 @@ git clone https://github.com/kimmu9512/reinforce-viz-frontend.git
 cd reinforce-viz-frontend
 ```
 
-1. Install dependencies:
+2. Install dependencies:
 
 ```bash
 npm install
@@ -46,13 +46,13 @@ or if you're using yarn:
 yarn install
 ```
 
-1. Start the development server:
+3. Start the development server:
 
 ```bash
 npm run dev
 ```
 
-1. Open your browser and navigate to `http://localhost:5173` (or the port specified in the console output).
+4. Open your browser and navigate to `http://localhost:5173` (or the port specified in the console output).
 
 ## Usage
 
