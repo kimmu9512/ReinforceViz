@@ -1,8 +1,7 @@
 import axios from "axios";
 import { AgentType, GridConfig, AgentOutput } from "../types";
 
-const API_BASE_URL =
-  "https://reinforceviz-backend-446b07cd4f3e.herokuapp.com/api";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const runAgent = async (
   agentType: AgentType,
